@@ -41,10 +41,11 @@ jobs:
           curl -Lo did.json ${{ env.did_web_url }}
           cat did.json
           
-#       - name: Install PYSCITT
-#         run: | 
-#           git clone https://github.com/microsoft/scitt-ccf-ledger
-#           cd scitt-ccf-ledger
-#           pip install --disable-pip-version-check -q -e ./pyscitt
+      - name: Install PYSCITT
+        run: | 
+          git clone https://github.com/microsoft/scitt-ccf-ledger
+          cd scitt-ccf-ledger
+          pip install --disable-pip-version-check -q -e ./pyscitt
+          scitt
           
         

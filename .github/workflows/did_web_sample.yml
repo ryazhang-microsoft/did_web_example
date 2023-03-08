@@ -38,7 +38,7 @@ jobs:
           
       - name: Install PYSCITT
         run: |
-          curl -Lo did.json ${{ env.REGISTRY }}
+          curl -Lo did.json ${{ env.did_web_url }}
           cat did.json
           
 #       - name: Install PYSCITT

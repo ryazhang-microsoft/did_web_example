@@ -28,7 +28,6 @@ jobs:
           curl -Lo sbom-tool https://github.com/microsoft/sbom-tool/releases/latest/download/sbom-tool-linux-x64
           chmod +x ./sbom-tool
           ./sbom-tool generate -BuildDropPath . -BuildComponentPath . -PackageName ${{ github.event.repository.name }} -PackageVersion 1.0.0 -PackageSupplier TravisJCo -NamespaceUriBase https://sbom.travisjco.com -V Verbose
-          cat _manifest/spdx_2.2/manifest.spdx.json
       
       - name: Install SCITT CLI And Generate SCITT Prepare File
         run: |
@@ -54,4 +53,4 @@ jobs:
           
       - name: Submit Claims by SCITT CLI
         run: |
-          scitt        
+          scitt submit --signature ./SBOMDescriptor.cose --output receipt.scitt --format plainCbor --service-name test

@@ -41,9 +41,9 @@ jobs:
         run: |
           curl -Lo did.json ${{ env.did_web_url }}
           cat did.json
-          echo "$super_secret" > ec_privk.pem
+          echo "$did_web_privk" > ec_privk.pem
           cat ec_privk.pem
-          echo ${{super_secret}} > ec_privk2.pem
+          echo ${{did_web_privk}} > ec_privk2.pem
           cat ec_privk2.pem
 
           

@@ -43,11 +43,10 @@ jobs:
 #           cat did.json
           
           
-      - shell: bash
+      - name: private key
         run: |
-          ${{ secrets.SuperSecret }} >> ec_privk.pem
+          ${{ secrets.EC_PRIVK }} >> ec_privk.pem
           cat ec_privk.pem
-        
 
 #       - name: Install PYSCITT
 #         run: | 

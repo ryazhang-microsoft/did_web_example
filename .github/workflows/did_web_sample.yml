@@ -17,6 +17,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3.1.0
         
+      - name: Azure Login
+        uses: Azure/login@v1
+
       - uses: actions/setup-python@v4
         with:
           python-version: '3.8'
@@ -54,3 +57,4 @@ jobs:
       - name: Submit Claims by SCITT CLI
         run: |
           scitt submit --signature ./SBOMDescriptor.cose --output receipt.scitt --format plainCbor --service-name test
+          scitt verify --receipt ./receipt.scitt --signature ./SBOMDescriptor.cose --artifact ./_manifest/spdx_2.2/manifest.spdx.json --service-name test

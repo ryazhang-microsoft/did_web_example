@@ -31,6 +31,5 @@ jobs:
       - name: Install SCITT CLI
         run: |
           tar -xzf linux_amd64.tar.gz
-          ls -la 
-          mv ./linux_amd4/scitt /usr/local/bin
+          mv ./linux_amd64/scitt /usr/local/bin
      

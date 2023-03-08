@@ -39,4 +39,5 @@ jobs:
         run: |
           tar -xzf linux_amd64.tar.gz
           mv ./linux_amd64/scitt /usr/local/bin
-          scitt prepare ./_manifest/spdx_2.2/manifest.spdx.json:application/spdx+json --output SBOMDescriptor.json 
+          scitt prepare ./_manifest/spdx_2.2/manifest.spdx.json:application/spdx+json --output SBOMDescriptor.json
+          cat ./SBOMDescriptor.json 

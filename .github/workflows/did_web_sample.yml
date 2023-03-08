@@ -21,9 +21,6 @@ jobs:
         uses: Azure/login@v1
         with:
           creds: ${{ secrets.AZURE_GITHUB_CREDS }}
-     
-      - run: |
-          az webapp list --query "[?state=='Running']"
 
       - uses: actions/setup-python@v4
         with:

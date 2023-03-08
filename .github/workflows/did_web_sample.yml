@@ -56,5 +56,4 @@ jobs:
           
       - name: Submit Claims by SCITT CLI
         run: |
-          cat scitt get-payload --signature ./SBOMDescriptor.cose
-        
+          scitt        

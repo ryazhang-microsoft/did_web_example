@@ -30,7 +30,7 @@ jobs:
       
       - name: Install SCITT CLI
         run: |
-          curl -Lo scitt.tar.gz https://github.com/scitt/releases/download/v0.1.0-alpha.1/scitt_0.1.0-alpha.1_linux_amd64.tar.gz
+          curl -Lo scitt.tar.gz https://github.com/microsoft/scittcli/releases/download/v1.0.0-alpha.5/linux_amd64.tar.gz
           tar -xzf scitt.tar.gz
           mv ./scitt /usr/local/bin
      

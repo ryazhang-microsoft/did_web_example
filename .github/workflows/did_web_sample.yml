@@ -37,14 +37,18 @@ jobs:
 #           scitt prepare ./_manifest/spdx_2.2/manifest.spdx.json:application/spdx+json --output SBOMDescriptor.json
 #           cat ./SBOMDescriptor.json
 
-      - name: Install PYSCITT
-        run: |
-          curl -Lo did.json ${{ env.did_web_url }}
-          cat did.json
-          ls -la
-          echo ${{env.did_web_privk}} >> ec_privk.pem
-          ls -la
+#       - name: Install PYSCITT
+#         run: |
+#           curl -Lo did.json ${{ env.did_web_url }}
+#           cat did.json
           
+          
+      - shell: bash
+        run: |
+          ${{ secrets.SuperSecret }} >> ec_privk.pem
+          cat ec_privk.pem
+        
+
 #       - name: Install PYSCITT
 #         run: | 
 #           git clone https://github.com/microsoft/scitt-ccf-ledger

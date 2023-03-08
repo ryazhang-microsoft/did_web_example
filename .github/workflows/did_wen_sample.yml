@@ -30,7 +30,7 @@ jobs:
       
       - name: Install SCITT CLI
         run: |
-          curl -Lo scitt.tar.gz https://artprodeussu2.artifacts.visualstudio.com/A41bf5486-7392-4b7a-a7e3-a735c767e3b3/b32aa71e-8ed2-41b2-9d77-5bc261222004/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL21zYXp1cmUvcHJvamVjdElkL2IzMmFhNzFlLThlZDItNDFiMi05ZDc3LTViYzI2MTIyMjAwNC9idWlsZElkLzY5NzMxNTUzL2FydGlmYWN0TmFtZS9kcm9wX3Rlc3RzX3Rlc3Rfc2NpdHRfY2xpX2dv0/content?format=file&subPath=%2Flinux_amd64.tar.gz
+          curl -Lo scitt.tar.gz https://github.com/scitt/releases/download/v0.1.0-alpha.1/scitt_0.1.0-alpha.1_linux_amd64.tar.gz
           tar -xzf scitt.tar.gz
           mv ./scitt /usr/local/bin
      

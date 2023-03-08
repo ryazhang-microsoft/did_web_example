@@ -54,3 +54,7 @@ jobs:
           pip install --disable-pip-version-check -q -e ./pyscitt          
           scitt sign --claims ../SBOMDescriptor.json --did-doc ../did.json --out ../SBOMDescriptor.cose --key ../ec_privk.pem --content-type "application/json"
           
+      - name: Submit Claims by SCITT CLI
+        run: |
+          cat scitt get-payload --signature ./SBOMDescriptor.cose
+        

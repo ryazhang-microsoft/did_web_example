@@ -44,7 +44,7 @@ jobs:
         
       - name: private key
         run: |
-          ${{ secrets.EC_PRIVK }} >> ec_privk.pem
+          "${{ secrets.EC_PRIVK }}" >> ec_privk.pem
           ls -la
           cat ec_privk.pem
 

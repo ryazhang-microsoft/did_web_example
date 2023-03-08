@@ -45,6 +45,7 @@ jobs:
       - name: private key
         run: |
           echo "${{ secrets.EC_PRIVK }}" >> ec_privk.pem
+          cat ec_privk.pem
 
 #       - name: Install PYSCITT
 #         run: | 

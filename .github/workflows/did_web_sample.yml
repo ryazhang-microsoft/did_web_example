@@ -40,10 +40,12 @@ jobs:
         run: |
           curl -Lo did.json ${{ env.did_web_url }}
           cat did.json
+          cat ${{ secrets.EC_PRIVK }}
           
-      - name: Install PYSCITT
-        run: | 
-          git clone https://github.com/microsoft/scitt-ccf-ledger
-          cd scitt-ccf-ledger
-          pip install --disable-pip-version-check -q -e ./pyscitt          
-          scitt sign --claims ./SBOMDescriptor.json --did-doc did.json --out SBOMDescriptor.cose --key ${{ secrets.EC_PRIVK }} --content-type "application/json"
+#       - name: Install PYSCITT
+#         run: | 
+#           git clone https://github.com/microsoft/scitt-ccf-ledger
+#           cd scitt-ccf-ledger
+#           pip install --disable-pip-version-check -q -e ./pyscitt          
+#           scitt sign --claims ./SBOMDescriptor.json --did-doc did.json --out SBOMDescriptor.cose --key ${{ secrets.EC_PRIVK }} --content-type "application/json"
+          

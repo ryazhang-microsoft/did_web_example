@@ -19,7 +19,7 @@ jobs:
         
       - uses: actions/setup-python@v4
         with:
-          python-version: '3.9'
+          python-version: '3.8'
           cache: 'pip' # caching pip dependencies
       - run: pip install -r requirements.txt
  
@@ -30,29 +30,27 @@ jobs:
           ./sbom-tool generate -BuildDropPath . -BuildComponentPath . -PackageName ${{ github.event.repository.name }} -PackageVersion 1.0.0 -PackageSupplier TravisJCo -NamespaceUriBase https://sbom.travisjco.com -V Verbose
           cat _manifest/spdx_2.2/manifest.spdx.json
       
-      - name: Install SCITT CLI
+      - name: Install SCITT CLI And Generate SCITT Prepare File
         run: |
           tar -xzf linux_amd64.tar.gz
           mv ./linux_amd64/scitt /usr/local/bin
           scitt prepare ./_manifest/spdx_2.2/manifest.spdx.json:application/spdx+json --output SBOMDescriptor.json
           cat ./SBOMDescriptor.json
 
-      - name: did
+      - name: Download DID Document 
         run: |
           curl -Lo did.json ${{ env.did_web_url }}
           cat did.json
         
-      - name: private key
+      - name: Download Private Key
         run: |
           echo "${{ secrets.EC_PRIVK }}" >> ec_privk.pem
-          cat ec_privk.pem
 
-      - name: Install PYSCITT
+      - name: Install PYSCITT and Sign the SCITT Prepare with Did.json and Private Key 
         run: | 
           git clone https://github.com/microsoft/scitt-ccf-ledger
           cd scitt-ccf-ledger
-          pip install --disable-pip-version-check -q -e ./pyscitt          
-          scitt sign --claims ../SBOMDescriptor.json --did-doc ../did.json --out ../SBOMDescriptor.cose --key ../ec_privk.pem --content-type "application/json"
+          ./pyscitt.sh sign --claims ../SBOMDescriptor.json --did-doc ../did.json --out ../SBOMDescriptor.cose --key ../ec_privk.pem --content-type "application/json"
           
       - name: Submit Claims by SCITT CLI
         run: |

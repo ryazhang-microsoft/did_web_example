@@ -27,9 +27,10 @@ jobs:
 #           git clone https://github.com/microsoft/scitt-ccf-ledger
 #           cd scitt-ccf-ledger
 #           pip install --disable-pip-version-check -q -e ./pyscitt
-      
+
       - name: Install SCITT CLI
         run: |
+          ls -la 
           tar -xzf linux_amd64.tar.gz
           mv ./linux_amd4/scitt /usr/local/bin
      

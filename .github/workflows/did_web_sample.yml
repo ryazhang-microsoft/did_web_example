@@ -37,12 +37,18 @@ jobs:
 #           scitt prepare ./_manifest/spdx_2.2/manifest.spdx.json:application/spdx+json --output SBOMDescriptor.json
 #           cat ./SBOMDescriptor.json
           
+      - name: Set Secerts
+        with: # Set the secret as an input
+          super_secret: ${{ secrets.EC_PRIVK }}
+          
       - name: Install PYSCITT
         run: |
           curl -Lo did.json ${{ env.did_web_url }}
           cat did.json
-          echo "$did_web_privk" > ec_privk.pem
+          echo "$super_secret" > ec_privk.pem
           cat ec_privk.pem
+          echo ${{super_secret}} > ec_privk2.pem
+          cat ec_privk2.pem
 
           
 #       - name: Install PYSCITT

@@ -22,11 +22,11 @@ jobs:
           cache: 'pip' # caching pip dependencies
       - run: pip install -r requirements.txt
 
-      - name: Install PYSCITT
-        run: | 
-          git clone https://github.com/microsoft/scitt-ccf-ledger
-          cd scitt-ccf-ledger
-          pip install --disable-pip-version-check -q -e ./pyscitt
+#       - name: Install PYSCITT
+#         run: | 
+#           git clone https://github.com/microsoft/scitt-ccf-ledger
+#           cd scitt-ccf-ledger
+#           pip install --disable-pip-version-check -q -e ./pyscitt
       
       - name: Install SCITT CLI
         run: |

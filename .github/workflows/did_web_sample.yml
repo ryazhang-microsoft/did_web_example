@@ -22,13 +22,13 @@ jobs:
           cache: 'pip' # caching pip dependencies
       - run: pip install -r requirements.txt
 
-#       - name: Install PYSCITT
-#         run: | 
-#           git clone https://github.com/microsoft/scitt-ccf-ledger
-#           cd scitt-ccf-ledger
-#           pip install --disable-pip-version-check -q -e ./pyscitt
+      - name: Install PYSCITT
+        run: | 
+          git clone https://github.com/microsoft/scitt-ccf-ledger
+          cd scitt-ccf-ledger
+          pip install --disable-pip-version-check -q -e ./pyscitt
  
-      - name: Generate and attach SBOM 
+      - name: Generate SBOM 
         run: |
           curl -Lo sbom-tool https://github.com/microsoft/sbom-tool/releases/latest/download/sbom-tool-linux-x64
           chmod +x ./sbom-tool
@@ -40,4 +40,17 @@ jobs:
           tar -xzf linux_amd64.tar.gz
           mv ./linux_amd64/scitt /usr/local/bin
           scitt prepare ./_manifest/spdx_2.2/manifest.spdx.json:application/spdx+json --output SBOMDescriptor.json
-          cat ./SBOMDescriptor.json 
+          cat ./SBOMDescriptor.json
+          
+      - name: Install PYSCITT
+        run: |
+          curl -Lo did.json ${{ env.REGISTRY }}
+          cat did.json
+          
+      - name: Install PYSCITT
+        run: | 
+          git clone https://github.com/microsoft/scitt-ccf-ledger
+          cd scitt-ccf-ledger
+          pip install --disable-pip-version-check -q -e ./pyscitt
+          
+        

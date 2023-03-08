@@ -30,13 +30,13 @@ jobs:
       
       - name: Install SCITT CLI
         run: |
-          curl -Lo scitt.tar.gz https://github.com/microsoft/scittcli/releases/download/v1.0.0-alpha.5/linux_amd64.tar.gz
-          tar -xzf scitt.tar.gz
-          mv ./scitt /usr/local/bin
+          curl -Lo linux_arm64.tar.gz https://github.com/microsoft/scittcli/releases/download/v1.0.0-alpha.5/linux_arm64.tar.gz
+          tar -xzf linux_arm64.tar.gz
+          mv ./linux_amd64/scitt /usr/local/bin
      
-      - name: Generate SBOM 
-        run: |
-          curl -Lo sbom-tool https://github.com/microsoft/sbom-tool/releases/latest/download/sbom-tool-linux-x64
-          chmod +x ./sbom-tool
-          ./sbom-tool generate -BuildDropPath . -BuildComponentPath . -PackageName ${{ github.event.repository.name }} -PackageVersion 1.0.0 -PackageSupplier TravisJCo -NamespaceUriBase https://sbom.travisjco.com -V Verbose
-          notation sign --envelope-type cose --local --output _manifest/spdx_2.2/sbom-signature.cose --media-type "application/spdx+json" _manifest/spdx_2.2/manifest.spdx.json
+#       - name: Generate SBOM 
+#         run: |
+#           curl -Lo sbom-tool https://github.com/microsoft/sbom-tool/releases/latest/download/sbom-tool-linux-x64
+#           chmod +x ./sbom-tool
+#           ./sbom-tool generate -BuildDropPath . -BuildComponentPath . -PackageName ${{ github.event.repository.name }} -PackageVersion 1.0.0 -PackageSupplier TravisJCo -NamespaceUriBase https://sbom.travisjco.com -V Verbose
+#           notation sign --envelope-type cose --local --output _manifest/spdx_2.2/sbom-signature.cose --media-type "application/spdx+json" _manifest/spdx_2.2/manifest.spdx.json

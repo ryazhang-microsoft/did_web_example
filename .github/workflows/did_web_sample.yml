@@ -28,8 +28,13 @@ jobs:
 #           cd scitt-ccf-ledger
 #           pip install --disable-pip-version-check -q -e ./pyscitt
 
-      - name: Install SCITT CLI
-        run: |
-          tar -xzf linux_amd64.tar.gz
-          mv ./linux_amd64/scitt /usr/local/bin
+#       - name: Install SCITT CLI
+#         run: |
+#           tar -xzf linux_amd64.tar.gz
+#           mv ./linux_amd64/scitt /usr/local/bin
      
+      - name: Generate and attach SBOM 
+        run: |
+          curl -Lo sbom-tool https://github.com/microsoft/sbom-tool/releases/latest/download/sbom-tool-linux-x64
+          chmod +x ./sbom-tool
+          ./sbom-tool generate -BuildDropPath . -BuildComponentPath . -PackageName ${{ github.event.repository.name }} -PackageVersion 1.0.0 -PackageSupplier TravisJCo -NamespaceUriBase https://sbom.travisjco.com -V Verbose

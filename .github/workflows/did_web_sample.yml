@@ -59,7 +59,15 @@ jobs:
           cd scitt-ccf-ledger
           ./pyscitt.sh sign --claims ../SBOMDescriptor.json --did-doc ../did.json --out ../SBOMDescriptor.cose --key ../ec_privk.pem --content-type "application/json"
           
-      - name: Submit Claims by SCITT CLI
+      - name: Submit Claims and Verify by SCITT CLI
         run: |
           scitt submit --signature ./SBOMDescriptor.cose --output receipt.scitt --format plainCbor --service-name test
           scitt verify --receipt ./receipt.scitt --signature ./SBOMDescriptor.cose --artifact ./_manifest/spdx_2.2/manifest.spdx.json --service-name test
+      
+      - name: Publish artifacts and signatures
+        uses: actions/upload-artifact@v3.1.1
+        with:
+          path: |
+            _manifest/spdx_2.2/manifest.spdx.json
+            SBOMDescriptor.cose
+            receipt.scitt

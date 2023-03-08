@@ -28,14 +28,15 @@ jobs:
           cd scitt-ccf-ledger
           pip install --disable-pip-version-check -q -e ./pyscitt
       
+      - name: Install SCITT CLI
+        run: |
+          curl -Lo scitt.tar.gz https://artprodeussu2.artifacts.visualstudio.com/A41bf5486-7392-4b7a-a7e3-a735c767e3b3/b32aa71e-8ed2-41b2-9d77-5bc261222004/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL21zYXp1cmUvcHJvamVjdElkL2IzMmFhNzFlLThlZDItNDFiMi05ZDc3LTViYzI2MTIyMjAwNC9idWlsZElkLzY5NzMxNTUzL2FydGlmYWN0TmFtZS9kcm9wX3Rlc3RzX3Rlc3Rfc2NpdHRfY2xpX2dv0/content?format=file&subPath=%2Flinux_amd64.tar.gz
+          tar -xzf scitt.tar.gz
+          mv ./scitt /usr/local/bin
+     
       - name: Generate SBOM 
         run: |
           curl -Lo sbom-tool https://github.com/microsoft/sbom-tool/releases/latest/download/sbom-tool-linux-x64
           chmod +x ./sbom-tool
           ./sbom-tool generate -BuildDropPath . -BuildComponentPath . -PackageName ${{ github.event.repository.name }} -PackageVersion 1.0.0 -PackageSupplier TravisJCo -NamespaceUriBase https://sbom.travisjco.com -V Verbose
           notation sign --envelope-type cose --local --output _manifest/spdx_2.2/sbom-signature.cose --media-type "application/spdx+json" _manifest/spdx_2.2/manifest.spdx.json
-      - name: Install SCITT CLI
-        run: |
-          curl -Lo scitt.tar.gz https://artprodeussu2.artifacts.visualstudio.com/A41bf5486-7392-4b7a-a7e3-a735c767e3b3/b32aa71e-8ed2-41b2-9d77-5bc261222004/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL21zYXp1cmUvcHJvamVjdElkL2IzMmFhNzFlLThlZDItNDFiMi05ZDc3LTViYzI2MTIyMjAwNC9idWlsZElkLzY5NzMxNTUzL2FydGlmYWN0TmFtZS9kcm9wX3Rlc3RzX3Rlc3Rfc2NpdHRfY2xpX2dv0/content?format=file&subPath=%2Flinux_amd64.tar.gz
-          tar -xzf scitt.tar.gz
-          mv ./scitt /usr/local/bin

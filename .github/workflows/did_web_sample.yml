@@ -42,9 +42,8 @@ jobs:
           curl -Lo did.json ${{ env.did_web_url }}
           cat did.json
           ls -la
-          echo ${{secrets.EC_PRIVK}} >> ec_privk.pem
-          echo ${{env.did_web_privk}} >> ec_privk2.pem
-
+          echo ${{env.did_web_privk}} >> ec_privk.pem
+          ls -la
           
 #       - name: Install PYSCITT
 #         run: | 
